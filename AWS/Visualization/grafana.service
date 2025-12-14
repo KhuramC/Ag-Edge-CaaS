@@ -1,0 +1,17 @@
+[Unit]
+Description=Grafana Server
+After=network.target
+# Would like Prometheus also running
+Wants=prometheus.service
+
+[Service]
+ExecStart=/home/ubuntu/grafana/bin/grafana-server
+User=ubuntu
+Group=ubuntu
+Type=simple
+Restart=always
+WorkingDirectory=/home/ubuntu/grafana
+
+[Install]
+# Start automatically upon boot
+WantedBy=multi-user.target
