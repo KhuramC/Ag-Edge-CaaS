@@ -10,7 +10,7 @@ Visualization occurs in a single EC2 instance with several automatic services ru
 - The user needs to expose the ports that [S3 exporter](#s3-exporter), [Prometheus server](#prometheus), and [Grafana](#grafana) use to the public.
 - Python3 needs to be installed for the exporter.
 - `boto3` and `Flask` needs to be installed for the exporter.
-  - Use `pip install boto3 Flask`.
+  - Use `pip install boto3 Flask pytze`.
 - While not strictly required, enabling the services ensure they start on booting of the instance.
 - While not strictly required, an elastic IP is preferred (`3.227.30.56` was used by us).
 

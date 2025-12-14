@@ -1,0 +1,22 @@
+[Unit]
+Description=Prometheus S3 CSV Exporter
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+
+WorkingDirectory=/home/ubuntu
+ExecStart=/usr/bin/python3 /home/ubuntu/s3_exporter.py
+
+Restart=always
+RestartSec=5
+
+# Configure environment variables
+Environment="S3_BUCKET=cloud-computing-drone-output-bucket"
+Environment="EXPORTER_PORT=9999"
+# Unbuffer stdout so logs show up immediately in systemd journal
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
