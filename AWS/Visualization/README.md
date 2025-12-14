@@ -1,0 +1,23 @@
+# Visualization
+
+Visualization occurs in a single EC2 instance with several automatic services running that get the data from the S3 bucket to the user facing Grafana.
+
+## EC2 Instance Requirements
+
+- The EC2 instance is using an Ubuntu 22.04 LTS image.
+- The EC2 instance must have access to the S3 bucket.
+  - Within AWS Academy Learner Lab, this was achieved with the same user creating the S3 bucket/instance and giving the instance access the given IAM role `LabRole`.
+- The user needs to expose the ports that [S3 exporter](#s3-exporter), [Prometheus server](#prometheus), and [Grafana](#grafana) use to the public.
+- Python3 needs to be installed for the exporter.
+- `boto3` and `Flask` needs to be installed for the exporter.
+  - Use `pip install boto3 Flask`.
+- While not strictly required, enabling the services ensure they start on booting of the instance.
+- While not strictly required, an elastic IP is preferred (`3.227.30.56` was used by us).
+
+### S3 Exporter
+
+The [S3 Exporter](./s3_exporter.py) and its service, [`exporter`](./exporter.service), generates the metrics for each logged experiment(each csv file) for Prometheus to query. Due to the experiments not occurring in real time, the exporter shifts the start of all experiments to 8:00 AM UTC that day to ensure that comparison of metrics across experiments start at the same time when viewed on Grafana.
+
+### Prometheus
+
+### Grafana
