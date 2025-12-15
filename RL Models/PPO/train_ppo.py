@@ -27,7 +27,7 @@ freq_to_action = {
 action_to_freq = {0: 3.32, 1: 3.34, 2: 3.9}
 
 #load data
-df = pd.read_csv("C:/Users/Preya/Desktop/Mizzou/Sem 1/Cloud/fieldvision_rl/final_rl_logs.csv")
+df = pd.read_csv("train_rl_logs.csv")
 df = df.fillna(0)
 df = df.replace([np.inf, -np.inf], 0)
 
@@ -145,5 +145,6 @@ torch.save({
 }, 'ppo_frequency_model.pth')
 
 print("Model saved as 'ppo_frequency_model.pth'")
+
 
 
