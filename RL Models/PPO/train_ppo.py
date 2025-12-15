@@ -1,5 +1,5 @@
 """
-PPO Training Script - Saves model for AERPAW deployment
+PPO Training Script 
 """
 
 import pandas as pd
@@ -153,4 +153,5 @@ torch.save({
 
 print("✓ Model saved as 'ppo_frequency_model.pth'")
 print("\nModel training complete!")
+
 print("Use 'deploy_ppo.py' to load and use this model on AERPAW")
