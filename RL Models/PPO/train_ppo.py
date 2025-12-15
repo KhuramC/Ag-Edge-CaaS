@@ -40,9 +40,6 @@ df["reward"] = (df["throughput_mbps"] -
 print(f"Loaded {len(df)} samples")
 
 # Performance lookup
-
-print("Creating performance lookup...")
-
 df["location_bin"] = pd.cut(df["lat"], bins=5, labels=False)
 df["distance_bin"] = pd.cut(df["distance_to_selected_bs_m"], bins=5, labels=False)
 df["snr_avg"] = (df["snr_bs1"] + df["snr_bs2"] + df["snr_bs3"] + df["snr_bs4"]) / 4
@@ -123,7 +120,6 @@ class FreqEnv(gym.Env):
         return self._get_state(), float(reward), done, False, {}
 
 # TRAIN PPO MODEL
-print("\nTraining PPO model...")
 env = DummyVecEnv([lambda: FreqEnv(df, avg_performance)])
 
 model = PPO(
@@ -139,9 +135,6 @@ model = PPO(
 
 model.learn(total_timesteps=100000)
 
-
-print("\nSaving model...")
-
 # Extract the policy network
 policy = model.policy
 
@@ -151,7 +144,6 @@ torch.save({
     'action_space': env.action_space,
 }, 'ppo_frequency_model.pth')
 
-print("✓ Model saved as 'ppo_frequency_model.pth'")
-print("\nModel training complete!")
+print("Model saved as 'ppo_frequency_model.pth'")
 
-print("Use 'deploy_ppo.py' to load and use this model on AERPAW")
+
