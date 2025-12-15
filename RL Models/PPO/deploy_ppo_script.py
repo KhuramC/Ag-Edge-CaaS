@@ -5,7 +5,6 @@ import gymnasium
 from torch.serialization import add_safe_globals
 add_safe_globals([gymnasium.spaces.box.Box])
 
-# Insert model path
 MODEL_PATH = "ppo_frequency_model.pth"
 
 FREQUENCIES = {
@@ -83,4 +82,5 @@ def predict_frequency(telemetry):
     action = torch.argmax(logits, dim=1).item()
 
     return FREQUENCIES[action]
+
 
